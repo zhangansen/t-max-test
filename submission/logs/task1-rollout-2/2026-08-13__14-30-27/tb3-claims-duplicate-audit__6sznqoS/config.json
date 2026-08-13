@@ -1,0 +1,12 @@
+{
+    "task": {
+        "path": "G:\\project\\T-max-test\\submission\\tasks\\tb3-claims-duplicate-audit"
+    },
+    "trial_name": "tb3-claims-duplicate-audit__6sznqoS",
+    "trials_dir": "G:\\project\\T-max-test\\submission\\logs\\task1-rollout-2\\2026-08-13__14-30-27",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "deepseek-v4-pro"
+    },
+    "job_id": "d3dca0be-c5c5-4a8f-bf12-12ba5a063e82"
+}

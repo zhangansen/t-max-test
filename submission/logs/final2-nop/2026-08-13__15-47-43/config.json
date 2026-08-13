@@ -1,0 +1,15 @@
+{
+    "job_name": "2026-08-13__15-47-43",
+    "jobs_dir": "G:\\project\\T-max-test\\submission\\logs\\final2-nop",
+    "n_concurrent_trials": 1,
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "G:\\project\\T-max-test\\submission\\tasks\\tb3-claims-duplicate-audit"
+        }
+    ]
+}

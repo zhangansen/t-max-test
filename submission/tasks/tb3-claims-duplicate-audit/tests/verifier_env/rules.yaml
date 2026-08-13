@@ -1,0 +1,34 @@
+# Business rules for duplicate detection. Two claim records are duplicates
+# iff ALL of the following conditions hold:
+#
+# patient_name  : normalized forms equal. Normalization, in order:
+#                 1) lowercase
+#                 2) replace every punctuation character with a single space
+#                    (punctuation is never deleted and never splits a word)
+#                 3) collapse consecutive whitespace into one space, trim ends
+# patient_dob   : equal after parsing into ISO-8601 (YYYY-MM-DD). Input
+#                 formats vary per file: YYYY-MM-DD, MM/DD/YYYY, DD.MM.YYYY.
+# service_code  : exactly equal (case-sensitive).
+# service_date  : absolute difference <= 7 days (inclusive). Input
+#                 formats vary per file: YYYY-MM-DD, MM/DD/YYYY, DD.MM.YYYY
+#                 (same variants as patient_dob).
+# amount        : relative difference <= 1%, i.e.
+#                 |a - b| / max(|a|, |b|) <= 0.01.
+#
+# claim_id and provider_id are NEVER used for matching.
+matching:
+  patient_name:
+    normalize:
+      - lowercase
+      - punctuation_to_space    # each punctuation char -> one space
+      - collapse_whitespace     # consecutive spaces -> one, trim ends
+  patient_dob:
+    input_formats: ["YYYY-MM-DD", "MM/DD/YYYY", "DD.MM.YYYY"]
+    tolerance_days: 0
+  service_code:
+    mode: exact
+  service_date:
+    tolerance_days: 7
+  amount:
+    relative_tolerance: 0.01
+  ignore: [claim_id, provider_id]

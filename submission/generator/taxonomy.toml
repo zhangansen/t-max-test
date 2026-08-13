@@ -1,0 +1,77 @@
+# T-Max task-generation taxonomy for TerminalBench 3 seed-case migration.
+# Each generated task samples ONE value per dimension (a "signature").
+# The sampled signature drives prompt/模板选择 and fixture/verifier selection.
+
+[seed_families]
+# Capability anchors derived from TerminalBench 3's 70+ seed cases.
+entity_resolution = { seeds = ["telecom-entity-resolution", "medical-claims-processing"], skills = ["blocking", "fuzzy-matching", "transitive-closure"] }
+log_forensics = { seeds = ["session-window-debug", "wal-recovery-ordering"], skills = ["log-parsing", "reconstruction", "root-cause"] }
+data_validation = { seeds = ["data-anonymization", "batched-eval-parity"], skills = ["schema-checking", "determinism", "policy-encoding"] }
+protocol_debugging = { seeds = ["shadow-relay", "payments-pipeline-fix"], skills = ["protocol-analysis", "debugging", "state-machine"] }
+cryptanalysis = { seeds = ["interleaved-vigenere", "bun-sourcemap-leak"], skills = ["crypto-math", "implementation", "side-channel"] }
+perf_optimization = { seeds = ["nextjs-performance", "vf2-speedup-networkx"], skills = ["profiling", "algorithmics", "benchmarking"] }
+db_ops = { seeds = ["live-database-cutover", "kv-live-surgery", "mvcc-lsm-compaction"], skills = ["sql", "migration", "consistency"] }
+scientific_compute = { seeds = ["lake-temp-glm", "gsea-proteomics", "glycan-ms2-elucidation"], skills = ["numerics", "domain-knowledge", "pipeline"] }
+
+[dimensions.domain]
+sysadmin = { weight = 2 }
+security = { weight = 1 }
+data_engineering = { weight = 3 }
+scientific_computing = { weight = 1 }
+finance = { weight = 1 }
+healthcare = { weight = 2 }
+
+[dimensions.persona]
+sre = {}
+incident_responder = {}
+quant_researcher = {}
+bioinformatician = {}
+claims_analyst = {}
+data_engineer = {}
+auditor = {}
+
+[dimensions.language]
+python = { weight = 3 }
+bash = { weight = 2 }
+c = { weight = 1 }
+rust = { weight = 1 }
+go = { weight = 1 }
+multi = { weight = 1 }
+
+[dimensions.complexity]
+short = { weight = 1, minutes = 15 }
+moderate = { weight = 3, minutes = 60 }
+complex = { weight = 2, minutes = 180 }
+intricate = { weight = 1, minutes = 480 }
+
+[dimensions.command_complexity]
+bash_only = { weight = 2 }
+bash_plus_code = { weight = 3 }
+bash_code_services = { weight = 1 }
+
+[dimensions.fixture]
+csv_text = { weight = 3 }
+binary = { weight = 1 }
+multi_service = { weight = 1 }
+vendored_package = { weight = 1 }
+image_audio = { weight = 1 }
+
+[dimensions.verifier]
+exact = { weight = 3 }
+metric_threshold = { weight = 2 }
+adversarial_corpus = { weight = 2 }
+fuzz_equivalence = { weight = 1 }
+multi_protocol = { weight = 1 }
+
+[hard_constraints]
+# Task validity (hard filters, in order):
+#   1. env builds (docker build exits 0)
+#   2. oracle reward == 1.0
+#   3. nop reward == 0.0
+#   4. verifier is deterministic (3 repeated oracle runs agree)
+#   5. instruction is self-contained (no external URLs required)
+#   6. canary GUID present in instruction.md / task.toml
+# Soft scoring:
+#   + novelty vs seed (semantic distance of instruction)
+#   + difficulty signal (rollout failure with oracle success)
+#   + diversity (domain/persona/language entropy vs produced set)

@@ -1,0 +1,10 @@
+{
+  "results": [
+    {
+      "checks": {},
+      "cost_usd": null,
+      "task_name": "tb3-claims-duplicate-audit",
+      "error": "Check trial failed with AgentSetupTimeoutError: Agent setup timed out after 360.0 seconds\nTrial artifacts: jobs\\2026-08-13__15-13-08\\check-tb3-claims-duplicate-audit__apwwNap"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "behavior_in_task_description": {
+    "outcome": "pass",
+    "explanation": "instruction.md explicitly covers everything the tests verify: the tool path /app/dedup.py, the exact CLI invocation (python3 /app/dedup.py /app/claims --rules /app/rules.yaml --out /app/duplicates.json), the CSV header, pairwise matching per /app/rules.yaml, transitive closure, output schema (JSON list of clusters, >=2 members, sorted ascending, clusters sorted by first member), the 300s limit, stdlib-only, id validity/uniqueness, and determinism. Minor caveat: rules.yaml's comment says service_date 'Dates are written as YYYY-MM-DD', but the generated data (both env and held-out) actually contains service dates in all three formats; the format is discoverable from the provided data files and the matching rule itself (<=7 days) is correctly specified, so the intended behavior is still described."
+  },
+  "behavior_in_tests": {
+    "outcome": "pass",
+    "explanation": "All specified behavior is tested: exact pair-set equality (precision=1.0 and recall=1.0) verifies the matching rules and transitive closure (the fixture contains chains where endpoints do not match directly), schema checks verify ids exist in input, appear in exactly one cluster, and clusters have >=2 members, plus a 300s runtime check and a stdlib-only check. Sorting order and determinism are specified but not directly tested; they are cosmetic or subsumed by exact-match comparison."
+  },
+  "informative_test_structure": {
+    "outcome": "pass",
+    "explanation": "test_outputs.py is clearly organized: a thorough module docstring explaining the execution and threat model, the shared artifact run at import, and well-named test functions (test_no_third_party_packages, test_artifact_runs_in_time, test_output_schema, test_exact_cluster_match) with descriptive assert messages. test.sh has clear section comments for hardening and reward handling."
+  },
+  "anti_cheating_measures": {
+    "outcome": "pass",
+    "explanation": "No ground truth is written into the agent environment (the env generator is invoked without --gt and deleted after build). The held-out fixture (seed 1337) is generated at verifier build time with parameters not visible to the agent. The artifact runs demoted to user 'nobody' via preexec_fn, so it cannot read /root/gt.json (home dir is 0700 in the base image) or /logs/verifier (chmod 700, root-only), and the reward is decided by root from pytest's exit code. No network access is needed and stdlib-only usage is itself asserted by a test. Caveat: the task repo contains leftover dev artifacts (.tmp_test/gt_1337.json matching the held-out seed), but no Dockerfile copies them into any image, so there is no runtime shortcut."
+  },
+  "structured_data_schema": {
+    "outcome": "pass",
+    "explanation": "The output schema is explicitly documented in instruction.md: /app/duplicates.json is a JSON list of clusters, each cluster a list of claim_ids sorted ascending, only clusters with >=2 members, clusters sorted lexicographically by first member. The input CSV header is stated verbatim, and the matching rules are documented in /app/rules.yaml (present in the environment with full comments)."
+  },
+  "pinned_dependencies": {
+    "outcome": "pass",
+    "explanation": "Test dependencies are pinned: pytest==9.1.1 and pytest-json-ctrf==0.5.2 in tests/Dockerfile. apt packages (python3, nodejs, npm, curl, procps) are unpinned, which the guidance treats as acceptable. Minor note: the environment image installs @anthropic-ai/claude-code via npm without a version pin, but that is harness tooling rather than a task/test dependency."
+  },
+  "typos": {
+    "outcome": "pass",
+    "explanation": "No typos found in filenames, paths, commands, or variable names: /app/dedup.py, /app/claims, /app/rules.yaml, /app/duplicates.json are consistent across instruction.md, test_outputs.py, test.sh, both Dockerfiles, and solve.sh; the CSV header matches the generator's fieldnames exactly; CLI flags --rules/--out match between instruction and test. One factual inaccuracy in a rules.yaml comment (service_date stated as always YYYY-MM-DD while the data uses three formats) is a documentation comment issue, not a filename/path/command typo."
+  },
+  "tests_or_solution_in_image": {
+    "outcome": "pass",
+    "explanation": "The environment Dockerfile copies only data/rules.yaml and data/generate_input.py; tests/ and solution/ contents are never COPYed into the runtime build. The tests image copies only its own verifier files."
+  },
+  "test_deps_in_image": {
+    "outcome": "pass",
+    "explanation": "Test-only dependencies (pytest, pytest-json-ctrf) are installed only in tests/Dockerfile. The environment image contains only python3, curl, procps, nodejs, npm, and the claude-code CLI — no test tooling."
+  },
+  "hardcoded_solution": {
+    "outcome": "pass",
+    "explanation": "solution/dedup.py is a genuine implementation: CSV parsing, name normalization, date parsing across three formats, exact blocking on (service_code, normalized name), union-find with transitive closure, tolerance checks for date and amount, and sorted JSON output. solve.sh merely installs the file. I verified it reproduces the ground truth exactly on all five dev fixtures (seeds 42, 7, 999, 2024, 1337)."
+  },
+  "file_reference_mentioned": {
+    "outcome": "pass",
+    "explanation": "The filenames the agent must produce — /app/dedup.py and /app/duplicates.json — are explicitly stated in instruction.md, along with the exact run command."
+  }
+}

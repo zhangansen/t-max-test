@@ -1,0 +1,31 @@
+# harbor-canary GUID {{ guid }}
+schema_version = "1.0"
+
+artifacts = [{{ artifacts | map('tojson') | join(', ') }}]
+
+[task]
+name = "{{ name }}"
+description = ""
+authors = [{ name = "{{ author }}", email = "{{ email }}" }]
+[metadata]
+author_name = "{{ author }}"
+author_email = "{{ email }}"
+author_organization = "T-Max generator"
+category = "{{ category }}"
+subcategory = "{{ subcategory }}"
+tags = [{{ tags | map('tojson') | join(', ') }}]
+expert_time_estimate_hours = {{ expert_time_estimate_hours }}
+
+[verifier]
+timeout_sec = {{ verifier_timeout_sec }}.0
+environment_mode = "separate"
+
+[agent]
+timeout_sec = {{ agent_timeout_sec }}.0
+
+[environment]
+build_timeout_sec = {{ build_timeout_sec }}.0
+cpus = {{ cpus }}
+memory_mb = {{ memory_mb }}
+storage_mb = {{ storage_mb }}
+gpus = 0

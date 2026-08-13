@@ -1,0 +1,12 @@
+{
+    "task": {
+        "path": "C:\\Users\\ZHANGA~1\\AppData\\Local\\Temp\\harbor-check-6ds5x79s\\check-tb3-claims-duplicate-audit"
+    },
+    "trial_name": "check-tb3-claims-duplicate-audit__6sfWGw9",
+    "trials_dir": "jobs\\2026-08-13__15-24-30",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "deepseek-v4-flash"
+    },
+    "job_id": "36e85de0-4387-4e29-97b3-9f26b97f44af"
+}

@@ -1,0 +1,18 @@
+Skipping image OS validation for hb__3b160deaa5fcc2d2324312d3c4c5722a: docker inspect returned 1
+Collecting main service artifacts
+Failed to download artifact '/app/dedup.py' from service 'main' (best-effort)
+Traceback (most recent call last):
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\artifact_handler.py", line 351, in _download_artifact
+    await source_env.service_download_file(
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 1052, in service_download_file
+    await self.download_file(source_path, target_path)
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 1037, in download_file
+    await self._platform.download_file(source_path, target_path)
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker_unix.py", line 185, in download_file
+    await self._env._run_docker_compose_command(
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 656, in _run_docker_compose_command
+    raise RuntimeError(
+RuntimeError: Docker compose command failed for environment claims-duplicate-audit. Command: docker compose --project-name tb3-claims-duplicate-audit__qjylznl__env --project-directory G:\project\T-max-test\submission\tasks\tb3-claims-duplicate-audit\environment -f C:\Users\zhangansen\AppData\Local\Temp\tmpvd8az6ue\tb3-claims-duplicate-audit__qJyLznL__env-docker-compose-resources.json -f C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker-compose-build.yaml -f C:\Users\zhangansen\AppData\Local\Temp\tmpo9pd_35t\docker-compose-environment.json -f C:\Users\zhangansen\AppData\Local\Temp\tmpqzd6338_\docker-compose-mounts.json cp main:/app/dedup.py G:\project\T-max-test\submission\logs\final-nop\2026-08-13__15-02-11\tb3-claims-duplicate-audit__qJyLznL\artifacts\app\dedup.py. Return code: 1. Stdout:  tb3-claims-duplicate-audit__qjylznl__env-main-1 copy tb3-claims-duplicate-audit__qjylznl__env-main-1:/app/dedup.py to G:\project\T-max-test\submission\logs\final-nop\2026-08-13__15-02-11\tb3-claims-duplicate-audit__qJyLznL\artifacts\app\dedup.py Copying
+Error response from daemon: Could not find the file /app/dedup.py in container fa363226369803d35b2709b703081ec95376c94b911533302da9e1c05ffa7e53
+. Stderr: None. 
+Skipping image OS validation for hb__6c966cb0f64621c39dbd2c25e5559b21: docker inspect returned 1

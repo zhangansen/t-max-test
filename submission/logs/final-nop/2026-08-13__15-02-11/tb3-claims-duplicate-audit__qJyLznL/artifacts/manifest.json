@@ -1,0 +1,16 @@
+[
+  {
+    "source": "/logs/artifacts",
+    "destination": "artifacts/logs/artifacts",
+    "type": "directory",
+    "status": "empty",
+    "service": null
+  },
+  {
+    "source": "/app/dedup.py",
+    "destination": "artifacts/app/dedup.py",
+    "type": "file",
+    "status": "failed",
+    "service": null
+  }
+]

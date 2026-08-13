@@ -1,0 +1,9 @@
+{
+    "jobs_dir": "G:\\project\\T-max-test\\submission\\logs\\smoketest2",
+    "n_concurrent_trials": 1,
+    "tasks": [
+        {
+            "path": "G:\\project\\tb-check\\tasks\\interleaved-vigenere"
+        }
+    ]
+}

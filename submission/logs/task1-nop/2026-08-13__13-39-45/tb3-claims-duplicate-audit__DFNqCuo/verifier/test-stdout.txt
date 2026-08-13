@@ -1,0 +1,46 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 4 items
+
+../tests/test_outputs.py .FFF                                            [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_artifact_runs_in_time __________________________
+
+    def test_artifact_runs_in_time():
+>       assert ARTIFACT_PROC.returncode == 0, (
+            f"tool failed rc={ARTIFACT_PROC.returncode}: {ARTIFACT_PROC.stderr[-500:]!r}"
+        )
+E       AssertionError: tool failed rc=2: b"/usr/bin/python3: can't open file '/app/dedup.py': [Errno 2] No such file or directory\n"
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/app/dedup.py', '/app/claims', '--rules', '/app/rules.yaml', '--out', '/ap...code=2, stdout=b'', stderr=b"/usr/bin/python3: can't open file '/app/dedup.py': [Errno 2] No such file or directory\n").returncode
+
+/tests/test_outputs.py:75: AssertionError
+______________________________ test_output_schema ______________________________
+
+    def test_output_schema():
+>       assert os.path.exists(OUT), "missing /app/duplicates.json"
+E       AssertionError: missing /app/duplicates.json
+E       assert False
+E        +  where False = <function exists at 0x7f8e1cef3560>('/app/duplicates.json')
+E        +    where <function exists at 0x7f8e1cef3560> = <module 'posixpath' (frozen)>.exists
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+/tests/test_outputs.py:82: AssertionError
+___________________________ test_exact_cluster_match ___________________________
+
+    def test_exact_cluster_match():
+>       with open(OUT) as f:
+             ^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/duplicates.json'
+
+/tests/test_outputs.py:99: FileNotFoundError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_outputs.py::test_no_third_party_packages
+FAILED ../tests/test_outputs.py::test_artifact_runs_in_time - AssertionError:...
+FAILED ../tests/test_outputs.py::test_output_schema - AssertionError: missing...
+FAILED ../tests/test_outputs.py::test_exact_cluster_match - FileNotFoundError...
+========================= 3 failed, 1 passed in 0.05s ==========================

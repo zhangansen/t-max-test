@@ -1,0 +1,13 @@
+{
+    "agents": [
+        {
+            "name": "claude-code",
+            "model_name": "deepseek-v4-flash"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "C:\\Users\\ZHANGA~1\\AppData\\Local\\Temp\\harbor-check-y6oi2h5b\\check-tb3-claims-duplicate-audit"
+        }
+    ]
+}

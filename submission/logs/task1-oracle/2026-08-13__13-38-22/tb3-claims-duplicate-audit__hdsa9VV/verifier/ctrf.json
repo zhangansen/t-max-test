@@ -1,0 +1,65 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-13T05:39:13.935714+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "9.1.1"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 4,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786599551168,
+            "stop": 1786599553934
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_no_third_party_packages",
+                "status": "passed",
+                "duration": 1,
+                "start": 1786599553699,
+                "stop": 1786599553700,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_artifact_runs_in_time",
+                "status": "passed",
+                "duration": 0,
+                "start": 1786599553701,
+                "stop": 1786599553701,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_output_schema",
+                "status": "passed",
+                "duration": 51,
+                "start": 1786599553702,
+                "stop": 1786599553753,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_exact_cluster_match",
+                "status": "passed",
+                "duration": 179,
+                "start": 1786599553754,
+                "stop": 1786599553933,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            }
+        ]
+    }
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "rollout-manifest-v1",
+  "trial": "tb3-claims-duplicate-audit__6sznqoS",
+  "task_id": {
+    "name": "tmax-test/claims-duplicate-audit",
+    "path": "G:\\project\\T-max-test\\submission\\tasks\\tb3-claims-duplicate-audit",
+    "content_hash": "ba26e18397a2cdc0387996ce7eeaf0c21559956c899801eed3bce353744017a5"
+  },
+  "task_version": "environment image hb__73e05039df23cc28233aa64e7a194f45 (Dockerfile rev: node18+claude2.1.229 pre-baked)",
+  "model": {
+    "name": "deepseek-v4-pro",
+    "provider": "anthropic-compatible (api.deepseek.com)"
+  },
+  "agent_harness": {
+    "name": "claude-code",
+    "version": "2.1.229",
+    "orchestrator": "harbor v0.21.0",
+    "sandbox": "docker",
+    "permission_mode": "bypassPermissions",
+    "effort": "max"
+  },
+  "run_params": {
+    "trials": 1,
+    "timeout_multiplier": 1.0,
+    "env": {
+      "cpus": 2,
+      "memory_mb": 4096
+    },
+    "attempts": {
+      "1": "AgentSetupTimeoutError (runtime apt stalled) -> fixed by pre-baking CLI into image",
+      "2": "success"
+    }
+  },
+  "outcome": {
+    "reward": 1.0,
+    "success": true,
+    "verifier_tests": "4/4 passed (exact_cluster_match precision=recall=1.0 on 100k held-out fixture)"
+  },
+  "timings_sec": {
+    "total": 1081.7,
+    "agent_setup": 2.4,
+    "agent_execution": 1039.0,
+    "verifier": 22.8
+  },
+  "usage": {
+    "input_tokens": 1905825,
+    "cached_tokens": 1862656,
+    "output_tokens": 58078,
+    "cost_usd": 2.599
+  },
+  "trajectory": {
+    "raw": [
+      "rollouts\\raw\\tb3-claims-duplicate-audit__6sznqoS.session.jsonl",
+      "rollouts\\raw\\tb3-claims-duplicate-audit__6sznqoS.claude-code.stream.txt"
+    ],
+    "normalized": [
+      "rollouts\\normalized\\tb3-claims-duplicate-audit__6sznqoS.atif.trajectory.json"
+    ],
+    "completeness": "35 tool_use / 35 tool_result paired, 0 unpaired, no truncation, 0 secrets"
+  },
+  "solution_artifact": "logs/task1-rollout-2/2026-08-13__14-30-27/tb3-claims-duplicate-audit__6sznqoS/artifacts/app/dedup.py",
+  "reproduce": {
+    "env": "PYTHONUTF8=1 PYTHONIOENCODING=utf-8 TERM=dumb ANTHROPIC_BASE_URL=https://api.deepseek.com ANTHROPIC_AUTH_TOKEN=<token> ANTHROPIC_MODEL=deepseek-v4-pro CLAUDE_EFFORT=max",
+    "command": "harbor run -p submission/tasks/tb3-claims-duplicate-audit -a claude-code -m deepseek-v4-pro -e docker -k 1 -n 1 -o submission/logs/task1-rollout-2 -y",
+    "note": "task environment image pre-bakes node18 + claude CLI 2.1.229 so agent setup needs no network"
+  },
+  "post_rollout_fixes": {
+    "rules_yaml_comment": "service_date format comment corrected in both environment/data/rules.yaml and tests/verifier_env/rules.yaml (comment-only, no behavior change)",
+    "dev_artifact_removed": ".tmp_test/gt_1337.json deleted from task dir (never copied into any image)",
+    "revalidation": "final2-oracle reward=1.0, final2-nop reward=0.0 (logs/final2-*)",
+    "quality_check": "harbor check 11/11 PASS after fixes (jobs/2026-08-13__15-24-30/check_report.json); rollout trajectory was produced against the pre-fix task checksum eca71d02..., behavior unchanged by the fixes"
+  }
+}

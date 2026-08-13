@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 375, in run
+    await self._prepare()
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 409, in _prepare
+    await self._setup_agent_environment()
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 1210, in _setup_agent_environment
+    await self._start_agent_environment()
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 1216, in _start_agent_environment
+    await asyncio.wait_for(
+  File "C:\Users\zhangansen\AppData\Roaming\uv\python\cpython-3.12.10-windows-x86_64-none\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 891, in start
+    await self._run_docker_compose_command(["build"])
+  File "C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 656, in _run_docker_compose_command
+    raise RuntimeError(
+RuntimeError: Docker compose command failed for environment claims-duplicate-audit. Command: docker compose --project-name tb3-claims-duplicate-audit__znr8ddt__env --project-directory G:\project\T-max-test\submission\tasks\tb3-claims-duplicate-audit\environment -f C:\Users\zhangansen\AppData\Local\Temp\tmpjlct41do\tb3-claims-duplicate-audit__znR8DdT__env-docker-compose-resources.json -f C:\Users\zhangansen\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker-compose-build.yaml -f C:\Users\zhangansen\AppData\Local\Temp\tmpqhbcgl71\docker-compose-environment.json -f C:\Users\zhangansen\AppData\Local\Temp\tmprb6aa238\docker-compose-mounts.json build. Return code: 17. Stdout: #0 building with "desktop-linux" instance using docker driver
+
+#1 [main internal] load build definition from Dockerfile
+#1 transferring dockerfile: 537B done
+#1 DONE 0.0s
+
+#2 [main internal] load metadata for docker.io/library/ubuntu:24.04
+#2 ERROR: failed to copy: httpReadSeeker: failed open: failed to do request: Get "https://image-mirror.r2.daocloud.vip/docker/registry/v2/blobs/sha256/04/045183670ef29ce21bc22a8d4f62511ce472679ca8fc9774f04181f7f383ca62/data?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=420d2a5e9cfd0dcddae7cfa0f609cd87%2F20260813%2Fapac%2Fs3%2Faws4_request&X-Amz-Date=20260813T051920Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=f230b8a58b621ba62dc4c94c790de3c0d723d00d7c5f9e4a310c862731dd8848": EOF
+------
+ > [main internal] load metadata for docker.io/library/ubuntu:24.04:
+------
+failed to solve: ubuntu:24.04: failed to resolve source metadata for docker.io/library/ubuntu:24.04: failed to copy: httpReadSeeker: failed open: failed to do request: Get "https://image-mirror.r2.daocloud.vip/docker/registry/v2/blobs/sha256/04/045183670ef29ce21bc22a8d4f62511ce472679ca8fc9774f04181f7f383ca62/data?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=420d2a5e9cfd0dcddae7cfa0f609cd87%2F20260813%2Fapac%2Fs3%2Faws4_request&X-Amz-Date=20260813T051920Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=f230b8a58b621ba62dc4c94c790de3c0d723d00d7c5f9e4a310c862731dd8848": EOF
+. Stderr: None. 

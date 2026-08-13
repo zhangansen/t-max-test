@@ -1,0 +1,13 @@
+# Force LF for anything executed inside Linux containers — CRLF checkout
+# broke test.sh/solve.sh shebangs before (harbor RewardFileNotFoundError).
+*.sh   text eol=lf
+*.py   text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.j2   text eol=lf
+Dockerfile text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.txt  text eol=lf

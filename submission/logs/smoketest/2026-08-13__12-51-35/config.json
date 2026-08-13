@@ -1,0 +1,10 @@
+{
+    "job_name": "2026-08-13__12-51-35",
+    "jobs_dir": "G:\\project\\T-max-test\\submission\\logs\\smoketest",
+    "n_concurrent_trials": 1,
+    "tasks": [
+        {
+            "path": "G:\\project\\tb-check\\tasks\\interleaved-vigenere"
+        }
+    ]
+}

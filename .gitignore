@@ -1,0 +1,14 @@
+# Dev junk
+.tmp_test/
+__pycache__/
+*.pyc
+*.pyo
+
+# Local tooling state
+.claude/
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store

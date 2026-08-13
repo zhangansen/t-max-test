@@ -1,0 +1,74 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-08-13T07:02:38.390771+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "9.1.1"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 1,
+            "failed": 3,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1786604558340,
+            "stop": 1786604558389
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_no_third_party_packages",
+                "status": "passed",
+                "duration": 2,
+                "start": 1786604558368,
+                "stop": 1786604558370,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_artifact_runs_in_time",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 12,
+                "start": 1786604558370,
+                "stop": 1786604558382,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_artifact_runs_in_time():\n>       assert ARTIFACT_PROC.returncode == 0, (\n            f\"tool failed rc={ARTIFACT_PROC.returncode}: {ARTIFACT_PROC.stderr[-500:]!r}\"\n        )\nE       AssertionError: tool failed rc=2: b\"/usr/bin/python3: can't open file '/app/dedup.py': [Errno 2] No such file or directory\\n\"\nE       assert 2 == 0\nE        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/app/dedup.py', '/app/claims', '--rules', '/app/rules.yaml', '--out', '/ap...code=2, stdout=b'', stderr=b\"/usr/bin/python3: can't open file '/app/dedup.py': [Errno 2] No such file or directory\\n\").returncode\n\n/tests/test_outputs.py:75: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_output_schema",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 4,
+                "start": 1786604558382,
+                "stop": 1786604558386,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_output_schema():\n>       assert os.path.exists(OUT), \"missing /app/duplicates.json\"\nE       AssertionError: missing /app/duplicates.json\nE       assert False\nE        +  where False = <function exists at 0x7f8e1f943560>('/app/duplicates.json')\nE        +    where <function exists at 0x7f8e1f943560> = <module 'posixpath' (frozen)>.exists\nE        +      where <module 'posixpath' (frozen)> = os.path\n\n/tests/test_outputs.py:82: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_exact_cluster_match",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 3,
+                "start": 1786604558386,
+                "stop": 1786604558389,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_exact_cluster_match():\n>       with open(OUT) as f:\n             ^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/app/duplicates.json'\n\n/tests/test_outputs.py:99: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

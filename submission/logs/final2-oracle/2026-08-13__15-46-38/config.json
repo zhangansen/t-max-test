@@ -1,0 +1,10 @@
+{
+    "job_name": "2026-08-13__15-46-38",
+    "jobs_dir": "G:\\project\\T-max-test\\submission\\logs\\final2-oracle",
+    "n_concurrent_trials": 1,
+    "tasks": [
+        {
+            "path": "G:\\project\\T-max-test\\submission\\tasks\\tb3-claims-duplicate-audit"
+        }
+    ]
+}
