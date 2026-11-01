@@ -71,3 +71,5 @@ harbor check submission/tasks/tb3-claims-duplicate-audit -m deepseek-v4-flash
 
 - 仓库内任何文件不得含 API key / token（提交前已全量扫描，0 命中）；凭证只经环境变量注入。
 - 任务 verifier 与 solution 隔离：agent 看不到 GT 与测试逻辑，artifact 以 nobody 身份运行。
+
+最后更新：2026-11-01
